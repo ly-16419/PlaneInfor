@@ -1,6 +1,6 @@
 package PlaneInformatiom;
 
-public class User {
+public class Costomer {
     private String id;
     private String name;
     private String phone;
