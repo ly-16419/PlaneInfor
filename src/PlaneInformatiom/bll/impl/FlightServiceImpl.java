@@ -2,13 +2,21 @@ package PlaneInformatiom.bll.impl;
 
 import PlaneInformatiom.bean.Flight;
 import PlaneInformatiom.bll.IFlightService;
+import PlaneInformatiom.dao.IFlightDao;
+import PlaneInformatiom.dao.impl.FlightDaoIml;
 
 import java.util.Set;
 
-public class FlightBllIml implements IFlightService {
+public class FlightServiceImpl implements IFlightService {
+    IFlightDao iFlightDao;
+
+    public FlightServiceImpl(){
+        iFlightDao=new FlightDaoIml();
+    }
+
     @Override
     public void insertFlight(Flight flight) {
-
+        iFlightDao.insertFlight(flight);
     }
 
     @Override

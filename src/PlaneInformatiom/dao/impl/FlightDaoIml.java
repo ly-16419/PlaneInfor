@@ -8,8 +8,8 @@ import java.util.Set;
 public class FlightDaoIml implements IFlightDao {
     @Override
     public void insertFlight(Flight flight) {
-
-    }
+        System.out.print("Dao"+flight.toString());
+}
 
     @Override
     public Set<Flight> getAllFlight() {
