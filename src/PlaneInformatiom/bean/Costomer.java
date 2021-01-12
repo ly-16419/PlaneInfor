@@ -1,4 +1,4 @@
-package PlaneInformatiom;
+package PlaneInformatiom.bean;
 
 import java.util.Date;
 

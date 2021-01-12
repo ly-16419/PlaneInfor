@@ -1,8 +1,9 @@
-package PlaneInformatiom;
+package PlaneInformatiom.bean;
 
-public class Plane {
+public class Flight {
     private String id;
     private String planeType;//机型
+    private String currentSeatsNum;//剩余座位号
     private String departureAirPort;//离开机场
     private String destinationAirPort;//目的机场
     private String departureTime;//离开时间
@@ -48,4 +49,11 @@ public class Plane {
         this.departureTime = departureTime;
     }
 
+    public String getCurrentSeatsNum() {
+        return currentSeatsNum;
+    }
+
+    public void setCurrentSeatsNum(String currentSeatsNum) {
+        this.currentSeatsNum = currentSeatsNum;
+    }
 }

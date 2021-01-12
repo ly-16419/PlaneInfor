@@ -1,4 +1,4 @@
-package PlaneInformatiom;
+package PlaneInformatiom.bean;
 
 public class Order {
     private String id;//
