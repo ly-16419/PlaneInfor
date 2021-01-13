@@ -3,12 +3,14 @@ package PlaneInformatiom.ui;
 import PlaneInformatiom.bean.Flight;
 import PlaneInformatiom.bll.IFlightService;
 import PlaneInformatiom.bll.impl.FlightServiceImpl;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.UUID;
 
 public class MainUI {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Scanner reader=new Scanner(System.in);
 
         int choice=0;
@@ -25,14 +27,15 @@ public class MainUI {
             choice=reader.nextInt();
 
             if (choice==1){
-                String id= UUID.randomUUID().toString();
+                String id= UUID.randomUUID().toString().replace("-","");
+
 
                 System.out.print( "请输入航班编号");
                 String fligthId=reader.next();
                 System.out.print( "请输入航班机型");
                 String planeType=reader.next();
                 System.out.print( "请输入座位数");
-                String currentSeatsNum=reader.next();
+                int currentSeatsNum=reader.nextInt();
                 System.out.print( "请输入起飞机场");
                 String departureAirPort=reader.next();
                 System.out.print( "请输入到达机场");
@@ -41,7 +44,7 @@ public class MainUI {
                 String departureTime=reader.next();
 
 
-                Flight flight=new Flight(fligthId,planeType,currentSeatsNum,
+                Flight flight=new Flight(id,fligthId,planeType,currentSeatsNum,
                         departureAirPort,destinationAirPort,departureTime);
 
                 IFlightService iFlightService=new FlightServiceImpl();

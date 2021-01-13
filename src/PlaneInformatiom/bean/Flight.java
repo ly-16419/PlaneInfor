@@ -1,15 +1,16 @@
 package PlaneInformatiom.bean;
 
 public class Flight {
-    private String id;
+    private String ID;
     private String FilghtID;//航班编号
     private String planeType;//机型
-    private String currentSeatsNum;//剩余座位号
+    private int currentSeatsNum;//剩余座位号
     private String departureAirPort;//离开机场
     private String destinationAirPort;//目的机场
     private String departureTime;//离开时间
 
-    public Flight(String filghtID, String planeType, String currentSeatsNum, String departureAirPort, String destinationAirPort, String departureTime) {
+    public Flight(String ID,String filghtID, String planeType, int currentSeatsNum, String departureAirPort, String destinationAirPort, String departureTime) {
+        this.ID=ID;
         FilghtID = filghtID;
         this.planeType = planeType;
         this.currentSeatsNum = currentSeatsNum;
@@ -18,12 +19,12 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
-    public String getId() {
-        return id;
+    public String getID() {
+        return ID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getPlaneType() {
@@ -58,11 +59,11 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
-    public String getCurrentSeatsNum() {
+    public int getCurrentSeatsNum() {
         return currentSeatsNum;
     }
 
-    public void setCurrentSeatsNum(String currentSeatsNum) {
+    public void setCurrentSeatsNum(int currentSeatsNum) {
         this.currentSeatsNum = currentSeatsNum;
     }
 
