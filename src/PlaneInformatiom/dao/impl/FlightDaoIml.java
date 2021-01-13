@@ -1,12 +1,12 @@
 package PlaneInformatiom.dao.impl;
 
 import PlaneInformatiom.bean.Flight;
+import PlaneInformatiom.bll.IFlightService;
+import PlaneInformatiom.bll.impl.FlightServiceImpl;
 import PlaneInformatiom.dao.IFlightDao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.HashSet;
 import java.util.Set;
 
 public class FlightDaoIml implements IFlightDao {
@@ -33,8 +33,34 @@ public class FlightDaoIml implements IFlightDao {
     }
 
     @Override
-    public Set<Flight> getAllFlight() {
-        return null;
+    public Set<Flight> getAllFlight() throws SQLException {
+        Set<Flight> allFligth=new HashSet<Flight>();
+
+        String url="jdbc:oracle:thin:@localhost:1521:orcl";
+        String username="opts";
+        String password="opts1234";
+        Connection conn=DriverManager.getConnection(url,username,password);
+        String sql="SELECT * FROM flight";
+
+        PreparedStatement pstmt=conn.prepareStatement(sql);
+        ResultSet re=pstmt.executeQuery();
+
+        while (re.next()){
+            String id=re.getString("ID");
+            String FilghtID=re.getString("FLIGHT_ID");
+            String planeType=re.getString("PLANE_TYPE");
+            int currentSeatsNum=re.getInt("TOTAL_SEATS_NUM");
+            String departureAirPort=re.getString("DEPARTURE_AIRPORT");
+            String destinationAirPort=re.getString("DESTINATION_AIRPORT");
+            String departureTime=re.getString("DEPARTURE_TIME");
+
+            Flight flight = new Flight(id, FilghtID, planeType, currentSeatsNum,
+                    departureAirPort, destinationAirPort, departureTime);
+            allFligth.add(flight);
+
+        }
+
+        return allFligth;
     }
 
     @Override
@@ -44,8 +70,8 @@ public class FlightDaoIml implements IFlightDao {
 
     @Override
     public Flight getFlightByDepartureAirPort(String departureAirPort) {
-        return null;
-    }
+    return null;
+}
 
     @Override
     public Flight getFlightByDestinationAirPort(String destinationAirPort) {

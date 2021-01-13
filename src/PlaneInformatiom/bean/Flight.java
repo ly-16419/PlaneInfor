@@ -84,6 +84,6 @@ public class Flight {
                 ", departureAirPort='" + departureAirPort + '\'' +
                 ", destinationAirPort='" + destinationAirPort + '\'' +
                 ", departureTime='" + departureTime + '\'' +
-                '}';
+                '}'+"\n";
     }
 }
