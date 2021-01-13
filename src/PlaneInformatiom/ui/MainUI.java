@@ -3,14 +3,17 @@ package PlaneInformatiom.ui;
 import PlaneInformatiom.bean.Flight;
 import PlaneInformatiom.bll.IFlightService;
 import PlaneInformatiom.bll.impl.FlightServiceImpl;
+import com.sun.jndi.toolkit.ctx.StringHeadTail;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainUI {
-    public static void main(String[] args) throws SQLException {
+            public static void main(String[] args){
         Scanner reader=new Scanner(System.in);
 
         int choice=0;
@@ -48,7 +51,25 @@ public class MainUI {
                         departureAirPort,destinationAirPort,departureTime);
 
                 IFlightService iFlightService=new FlightServiceImpl();
-                iFlightService.insertFlight(flight);
+                try {
+                    iFlightService.insertFlight(flight);
+                } catch (SQLException e) {
+                    String errorMessage=e.getMessage();
+                    if (errorMessage.startsWith("ORA-12899")) {
+                        //ORA-12899: value too large for column "OPTS"."FLIGHT"."ID" (actual: 32, maximum: 30)
+                        // 按指定模式在字符串查找
+                        String pattern = "(\\w+-\\d{5}):(\\s\\w+)+\\s(\"\\w+\")\\.(\"\\w+\")\\.(\"\\w+\")";
+                        Pattern r = Pattern.compile(pattern);
+                        Matcher m = r.matcher(errorMessage);
+                        if (m.find()) {
+                            String val=m.group(0);
+                            String tableName=m.group(4);
+                            String columName=m.group(5);
+                        }else {
+                            System.out.println("NO MATCH");
+                        }
+                    }
+                }
             }
         }
     }
