@@ -1,15 +1,15 @@
-package PlaneInformatiom.bll.impl;
+package cn.edu.hcnu.bll.impl;
 
-import PlaneInformatiom.bean.Flight;
-import PlaneInformatiom.bll.IFlightService;
-import PlaneInformatiom.dao.IFlightDao;
-import PlaneInformatiom.dao.impl.FlightDaoIml;
-import javafx.util.BuilderFactory;
+import cn.edu.hcnu.bean.Flight;
+import cn.edu.hcnu.bll.IFlightService;
+import cn.edu.hcnu.dao.IFlightDao;
+import cn.edu.hcnu.dao.impl.FlightDaoIml;
 
 import java.sql.SQLException;
 import java.util.Set;
 
 public class FlightServiceImpl implements IFlightService {
+
     IFlightDao iFlightDao;
 
     public FlightServiceImpl(){
@@ -22,8 +22,8 @@ public class FlightServiceImpl implements IFlightService {
     }
 
     @Override
-    public Set<Flight> getAllFlight() throws SQLException {
-        return iFlightDao.getAllFlight();
+    public Set<Flight> getAllFlights() throws SQLException {
+        return iFlightDao.getAllFlights();
     }
 
     @Override
